@@ -15,14 +15,14 @@ namespace Acme.BizTests
         public void ShowProductDetail()
         {
             //arrange
-            var product = new Product(1,"Paper","desc");
-         
+            var product = new Product(1,"Chair","Smart chaire");
+            var expect = "product is: Smart chaire with a  minimum price of 1.69";
 
             //act
             var result = product.ShowProductDetails();
 
             //assert
-            Assert.AreEqual("product: Paper desc", result);
+            Assert.AreEqual(expect, result);
             
         }
 
@@ -35,6 +35,16 @@ namespace Acme.BizTests
             var result= product.SendDWelcomeMessagetoProductVendor();
 
             Assert.AreEqual("Message sent: Hello",result);
+        }
+
+        [TestMethod()]
+        public void AvailableDate()
+        {
+            var product = new Product();
+
+            var expected = product.availableDate();
+
+            Assert.AreEqual(null, expected);
         }
     }
 }

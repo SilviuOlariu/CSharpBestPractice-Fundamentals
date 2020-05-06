@@ -11,7 +11,8 @@ namespace Acme.Biz
         public Product()
         {
            ProductVendor = new Vendor();
-
+            this.MinimumPrice = 1.69;
+            
         }
 
         public Product(int productId, string productName, string description) : this()
@@ -20,10 +21,11 @@ namespace Acme.Biz
             ProductName = productName;
             Description = description;
         }
-
+        public readonly double MinimumPrice;
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
+        public DateTime? AvailableOn { get; set; }
         public Vendor ProductVendor { get; set;}
 
         //-instantiate an object through the lazy loading method
@@ -38,11 +40,8 @@ namespace Acme.Biz
 
         public string ShowProductDetails()
         {
-         
-
-            var details = "product: " + ProductName + " " + Description;
+            var details = "product is: "+ Description +" with a  minimum price of " + MinimumPrice;
             
-          
             return details;
         }
 
@@ -52,6 +51,13 @@ namespace Acme.Biz
 
             string message = "welcome ";
          return   ProductVendor.SendWelcomeEmail(message);
+        }
+
+        public DateTime? availableDate()
+        {
+            //hard coded value for date;
+            return AvailableOn?.ToLocalTime();
+
         }
 
     }
