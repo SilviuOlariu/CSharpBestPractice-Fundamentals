@@ -25,5 +25,16 @@ namespace Acme.BizTests
             Assert.AreEqual("product: Paper desc", result);
             
         }
+
+        [TestMethod()]
+        public void SendMessageToVendor()
+        {
+            //arrange
+            var product = new Product();
+
+            var result= product.SendDWelcomeMessagetoProductVendor();
+
+            Assert.AreEqual("Message sent: Hello",result);
+        }
     }
 }

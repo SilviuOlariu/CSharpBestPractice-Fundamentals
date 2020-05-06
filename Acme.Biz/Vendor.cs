@@ -12,6 +12,18 @@ namespace Acme.Biz
     /// </summary>
     public class Vendor 
     {
+        public Vendor()
+        {
+
+        }
+        public Vendor(int id, string companyName, string email):this()
+        {
+            VendorId = id;
+            CompanyName = companyName;
+            Email = email;
+
+        }
+
         public int VendorId { get; set; }
         public string CompanyName { get; set; }
         public string Email { get; set; }
