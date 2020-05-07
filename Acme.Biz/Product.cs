@@ -21,12 +21,36 @@ namespace Acme.Biz
             ProductName = productName;
             Description = description;
         }
+        public string ValidationProduct { get; set; } 
         public readonly double MinimumPrice;
         public int ProductId { get; set; }
-        public string ProductName { get; set; }
         public string Description { get; set; }
         public DateTime? AvailableOn { get; set; }
         public Vendor ProductVendor { get; set;}
+        public string Category { get; set; }
+        public int SequenceNumber { get; set; }
+        public string ProductCode => Category + "-" + SequenceNumber.ToString();
+        private string productName;
+        public double Cost;
+        public string ProductName
+        {
+            get
+            {
+                return productName;
+            }
+            set
+            {
+                if(value.Length <=3)
+                {
+                    ValidationProduct = "Product must have at least 3 characters";
+                }
+                else
+                {
+                    productName = value;
+                }
+              
+            }
+        }
 
         //-instantiate an object through the lazy loading method
         //public Vendor ProductVendor
@@ -59,6 +83,9 @@ namespace Acme.Biz
             return AvailableOn?.ToLocalTime();
 
         }
+
+        public double CalculateSuggestedPrice(double Percent)
+            => this.Cost + (this.Cost * Percent / 100);
 
     }
 }

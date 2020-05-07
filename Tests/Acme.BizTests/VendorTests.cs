@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acme.Common;
 
 namespace Acme.Biz.Tests
 {
@@ -54,6 +55,46 @@ namespace Acme.Biz.Tests
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void PlaceOrderSuccessfullySent()
+        {
+            //arrange
+            var product = new Product();
+            product.ProductName = "Fruits";
+
+            var vendor = new Vendor();
+
+            //act
+           var actual = vendor.PlaceOrder(product, 2);
+
+            //asert
+
+            Assert.AreEqual(actual.Success, true);
+            Assert.AreEqual(actual.Message, "succesfully sent");
+           
+        }
+
+        [TestMethod()]
+        public void PlaceOrderDeliveredBy()
+        {
+            //arrange
+            var product = new Product();
+            product.ProductName = "Fruits";
+            var vendor = new Vendor();
+            var expected = new OperationResult(true, "successfully processed the order");
+            var deliveredby = new DateTimeOffset(DateTime.Now);
+            //act
+
+           var actual = vendor.PlaceOrder(product, 1, deliveredby);
+
+            //assert
+
+            Assert.AreEqual(expected.Success, actual.Success);
+            Assert.AreEqual(expected.Message, actual.Message);
+
+
         }
     }
 }
