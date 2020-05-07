@@ -72,7 +72,7 @@ namespace Acme.Biz.Tests
             //asert
 
             Assert.AreEqual(actual.Success, true);
-            Assert.AreEqual(actual.Message, "succesfully sent");
+            Assert.AreEqual(actual.Message, "successfully processed the order");
            
         }
 
@@ -95,6 +95,17 @@ namespace Acme.Biz.Tests
             Assert.AreEqual(expected.Message, actual.Message);
 
 
+        }
+        [TestMethod()]
+        public void VendorToString()
+        {
+            var vendor = new Vendor();
+            vendor.CompanyName = "Endava";
+            var expected = "Vendor: Endava";
+
+            var act = vendor.ToString();
+
+            Assert.AreEqual(expected,act);
         }
     }
 }

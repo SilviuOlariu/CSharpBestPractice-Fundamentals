@@ -129,5 +129,16 @@ namespace Acme.Biz
                                                         this.Email);
             return confirmation;
         }
+
+        public override string ToString()
+        {
+            var VendorName = "Vendor: " + CompanyName;
+            var rep = VendorName.Replace("Vendor", "Company");
+            
+            return VendorName;
+
+            
+
+        }
     }
 }
